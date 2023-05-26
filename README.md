@@ -4,6 +4,7 @@
 
 Download dependencies with the shell command below.
 ```shell
+git clone https://github.com/BMVC586/Cross-Modal-Token-Synchronization
 git clone https://github.com/pytorch/audio
 cd audio
 git reset --hard e77b8f909154d0361afe9a3420a17fc41e74e9d6
@@ -16,11 +17,12 @@ git clone https://github.com/pytorch/fairseq
 cd fairseq
 pip install --editable ./
 pip install -r requirements.txt
+cd ..
 ```
 
 ### Dataset Preparation
 
-1. Get authentification for Lip Readin in the Wild Dataset via https://www.bbc.co.uk/rd/projects/lip-reading-datasets
+1. Get authentification for Lip Reading in the Wild Dataset via https://www.bbc.co.uk/rd/projects/lip-reading-datasets
 2. Download dataset using the shell command below
 
 ```shell
@@ -34,8 +36,8 @@ wget --user <USERNAME> --password <PASSWORD> https://thor.robots.ox.ac.uk/~vgg/d
 ```
 3. Extract region of interest and convert mp4 file into pkl file with the commands below.
 ```shell
-python preprocess_roi.py
-python preprocess_pkl.py
+python ./src/preprocess_roi.py
+python ./src/preprocess_pkl.py
 ```
 
 ### Train
@@ -45,10 +47,9 @@ python ./src/train.py ./config/bert-12l-512d.yaml devices=[0] # Transformer back
 python ./src/train.py ./config/dc-tcn-base.yaml devices=[0] # DC-TCN backbone
 ```
 
-
 ### Inference
 
-For inference, please download the pretrained checkpoint on the table below and run the code with the following command.
+For inference, please download the pretrained checkpoint from the repository's [release section](https://github.com/BMVC586/Cross-Modal-Token-Synchronization/releases)(or from url attached on the table below) and run the code with the following command.
 ```shell
 python ./src/inference.py ./config/bert-12l-512d.yaml devices=[0] # Transformer backbone
 python ./src/inference.py ./config/dc-tcn-base.yaml devices=[0] # DC-TCN backbone
@@ -74,8 +75,6 @@ We investigate the role of cross-modal token synchronization in visual speech re
 Above is performance comparison on the Lip Reading in the Wild benchmark. The proposed Cross-Modal Token Synchronization method significantly outperforms existing state-of-the-art techniques. The term "Supervised" indicates whether the model was only trained with ground truth transcriptions or trained with self-supervised learning methods.
 
 
-
-
 | Model       | Sync | Training Set     | Data Size | Ensemble | WB  | Top-1 (%)       | Checkpoints |
 | :-----------: | :----: | :----------------: | :---------: | :--------: | :---: | :---------------: | :---: |
 | Transformer | ✗    | LRW              | 165h      | ✗        | ✗   | 89.5            | - |
@@ -86,11 +85,11 @@ Above is performance comparison on the Lip Reading in the Wild benchmark. The pr
 | DC-TCN      | ✗    | LRW, LRS2&3, AVS | 1504h     | ✗        | ✓   | 92.9            | - |
 | DC-TCN      | ✗    | LRW, LRS2&3, AVS | 1504h     | ✓        | ✓   | 94.1            | - |
 | ---      | ---    | --- | ---     | ---        | ---   | ---            | --- |
-| DC-TCN      | ✓    | LRW              | 165h      | ✗        | ✗   | **91.2 (+0.8)** | [🔗](https://storage.cloud.google.com/lrw-project/LRW-Checkpoints/tcn-epoch%3D74-step%3D95475-audioloss10.ckpt) |
-| DC-TCN      | ✓    | LRW              | 165h      | ✗        | ✓   | **93.4 (+1.3)** | [🔗](https://storage.cloud.google.com/lrw-project/LRW-Checkpoints/dc-tcn-resnet18-base-audio10-fixmixup-WB-4GPU-BEST-epoch%3D75-step%3D96748.ckpt) |
-| Transformer | ✓    | LRW              | 165h      | ✗        | ✗   | **93.2 (+3.7)** | [🔗](https://storage.cloud.google.com/lrw-project/LRW-Checkpoints/xtransformer-epoch%3D144-step%3D184585-0.9319.ckpt) |
-| Transformer | ✓    | LRW              | 165h      | ✗        | ✓   | **94.9**        | [🔗](https://storage.cloud.google.com/lrw-project/LRW-Checkpoints/xtransformer-wb-epoch%3D148-step%3D189677-0.9493.ckpt)|
-| Transformer | ✓    | LRW, LRS2        | 554h      | ✗        | ✓   | **95.0**        | [🔗](https://storage.cloud.google.com/lrw-project/LRW-Checkpoints/xtransformer-wb-epoch%3D146-step%3D187131-0.9497.ckpt) |
+| DC-TCN      | ✓    | LRW              | 165h      | ✗        | ✗   | **91.2 (+0.8)** | [🔗](https://github.com/BMVC586/Cross-Modal-Token-Synchronization/releases/download/v1/LRW-Checkpoints_tcn-epoch.74-step.95475-audioloss10.ckpt) |
+| DC-TCN      | ✓    | LRW              | 165h      | ✗        | ✓   | **93.4 (+1.3)** | [🔗](https://github.com/BMVC586/Cross-Modal-Token-Synchronization/releases/download/v1/LRW-Checkpoints_dc-tcn-resnet18-base-audio10-fixmixup-WB-4GPU-BEST-epoch.75-step.96748.ckpt) |
+| Transformer | ✓    | LRW              | 165h      | ✗        | ✗   | **93.2 (+3.7)** | [🔗](https://github.com/BMVC586/Cross-Modal-Token-Synchronization/releases/download/v1/LRW-Checkpoints_xtransformer-epoch.144-step.184585-0.9319.ckpt) |
+| Transformer | ✓    | LRW              | 165h      | ✗        | ✓   | **94.9**        | [🔗](https://github.com/BMVC586/Cross-Modal-Token-Synchronization/releases/download/v1/LRW-Checkpoints_xtransformer-wb-epoch.148-step.189677-0.9493.ckpt)|
+| Transformer | ✓    | LRW, LRS2        | 554h      | ✗        | ✓   | **95.0**        | [🔗](https://github.com/BMVC586/Cross-Modal-Token-Synchronization/releases/download/v1/LRW-Checkpoints_xtransformer-wb-epoch.146-step.187131-0.9497.ckpt) |
 
 Above is performance on LRW test set according to applied methodologies. **WB** indicates word boundary introduced by which is word's temporal appearance indicator in the video. The term **Sync** denotes whether Cross-Modal Token Synchronization is applied during the training. **Ensemble** implies whether multiple models' outputs were ensembled for the prediction. The results without synchronization method are reported from previous works. Using the same spatial front-end with the previous works, we showcase that our approach benefits both DC-TCN and Transformer backbones even on low-resource settings.
 
