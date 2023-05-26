@@ -5,6 +5,7 @@
 Download dependencies with the shell command below.
 ```shell
 git clone https://github.com/BMVC586/Cross-Modal-Token-Synchronization
+cd Cross-Modal-Token-Synchronization
 git clone https://github.com/pytorch/audio
 cd audio
 git reset --hard e77b8f909154d0361afe9a3420a17fc41e74e9d6
