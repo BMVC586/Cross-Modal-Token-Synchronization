@@ -56,7 +56,7 @@ python ./src/inference.py ./config/bert-12l-512d.yaml devices=[0] # Transformer 
 python ./src/inference.py ./config/dc-tcn-base.yaml devices=[0] # DC-TCN backbone
 ```
 
-### Abstract
+### Description
 
 We investigate the role of cross-modal token synchronization in visual speech recognition (VSR), focusing on the interplay between visual representations and temporally aligned quantized audio tokens. Our method generates discrete audio tokens from silent video frames in a non-autoregressive manner. Unlike previous approaches that heavily rely on raw audio waveforms and graphemes, our method utilizes quantized audio tokens, exploiting their advantages in terms of improved linguistic representation and efficient computation. We further introduce a joint training process, combining category classification, audio classification, and KL-Divergence losses to ensure consistency between original and horizontally flipped predictions. Our approach improves VSR performance by +2.8\%p over existing methods on the Lip Reading in the Wild benchmark by adding a single forward pass in inference and a negligible increase in learnable parameters. Importantly, our model, trained on one third of the dataset size, outperforms ensemble models trained on larger datasets.
 
