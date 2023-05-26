@@ -17,8 +17,8 @@ wget https://dl.fbaipublicfiles.com/fairseq/wav2vec/vq-wav2vec_kmeans.pt -P ./LR
 git clone https://github.com/pytorch/fairseq
 cd fairseq
 pip install --editable ./
-pip install -r requirements.txt
 cd ..
+pip install -r requirements.txt
 ```
 
 ### Dataset Preparation
