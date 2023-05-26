@@ -13,7 +13,7 @@ python setup.py install
 cd ..
 apt install libturbojpeg
 pip install -U git+https://github.com/lilohuang/PyTurboJPEG.git
-wget https://dl.fbaipublicfiles.com/fairseq/wav2vec/vq-wav2vec_kmeans.pt -P ./LRW2
+wget https://dl.fbaipublicfiles.com/fairseq/wav2vec/vq-wav2vec_kmeans.pt -P ./LRW
 git clone https://github.com/pytorch/fairseq
 cd fairseq
 pip install --editable ./

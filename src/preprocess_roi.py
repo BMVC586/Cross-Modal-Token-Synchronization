@@ -51,9 +51,9 @@ def read_landmark(path):
 
 
 if __name__ == "__main__":
-    root_dir = "./LRW2/dset_mp4/"
+    root_dir = "./LRW/dset_mp4/"
     
-    with open("./LRW2/labels.txt") as myfile:
+    with open("./LRW/labels.txt") as myfile:
         labels = myfile.read().splitlines()
 
     all_files = []

@@ -1,18 +1,18 @@
 devices: [0, 1, 2, 3]
 
 data:
-  train: ./LRW2/lipread_dataset/*/train/*.pkl
-  validation: ./LRW2/lipread_dataset/*/val/*.pkl
-  test: ./LRW2/lipread_dataset/*/test/*.pkl
-  label_directory: ./LRW2/lipread_dataset
-  durations: ./LRW2/lipread_durations.csv
+  train: ./LRW/lipread_dataset/*/train/*.pkl
+  validation: ./LRW/lipread_dataset/*/val/*.pkl
+  test: ./LRW/lipread_dataset/*/test/*.pkl
+  label_directory: ./LRW/lipread_dataset
+  durations: ./LRW/lipread_durations.csv
   input_size: 96
   max_time_masks: 15
 
 model:
   name: dc-tcn
   wav2vec:
-    path: ./LRW2/vq-wav2vec_kmeans.pt
+    path: ./LRW/vq-wav2vec_kmeans.pt
     alignment: 4
   dctcn:
     modality: video

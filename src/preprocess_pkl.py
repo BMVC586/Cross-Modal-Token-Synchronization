@@ -14,7 +14,7 @@ import mediapipe as mp
 from pydub import AudioSegment
 
 
-target_dir = "./LRW2/lipread_dataset"
+target_dir = "./LRW/lipread_dataset"
 
 if not os.path.exists(target_dir):
     os.makedirs(target_dir)
@@ -173,11 +173,11 @@ def extract_opencv(filename):
     return video
 
 
-class LRW2Dataset(Dataset):
+class LRWDataset(Dataset):
     def __init__(self):
-        root_dir = "./LRW2/lipread_mp4/"
+        root_dir = "./LRW/lipread_mp4/"
 
-        with open("./LRW2/labels.txt") as myfile:
+        with open("./LRW/labels.txt") as myfile:
             labels = myfile.read().splitlines()
 
         all_files = []
@@ -217,7 +217,7 @@ class LRW2Dataset(Dataset):
 
 if __name__ == "__main__":
     loader = DataLoader(
-        LRW2Dataset(),
+        LRWDataset(),
         batch_size=128,
         num_workers=128,
         shuffle=False,
